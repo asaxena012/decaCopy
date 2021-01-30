@@ -1,0 +1,53 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  width: 350px;
+  height: 1250px;
+  font-size: 12px;
+}
+
+/* Container Main CSS */
+.container-main {
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Box CSS */
+
+.box {
+  display: flex;
+  min-height: 70px;
+  max-height: 100px;
+  width: 300px;
+  border: 3px solid #4285f4;
+  border-radius: 20px;
+}
+
+img {
+  width: 29px;
+  height: 33.14px;
+}
+
+.box-content {
+  margin: 8px 16px;
+  line-height: 17.06px;
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #4285f4;
+  border: 3px solid #4285f4;
+  border-radius: 15px;
+}
+
+img {
+  margin: 0px 11px;
+}
