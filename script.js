@@ -14,3 +14,12 @@ function trimString(currentBox) {
 }
 
 elBoxContent.forEach(trimString);
+
+// Listen to port message
+chrome.runtime.onConnect.addListener(function (port) {
+  console.assert(port.name == "knock");
+
+  port.onMessage.addListener(function (msg) {
+    console.log(msg.data);
+  });
+});
