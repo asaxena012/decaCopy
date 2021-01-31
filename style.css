@@ -23,6 +23,7 @@ body {
 
 .box {
   display: flex;
+  justify-content: space-between;
   min-height: 70px;
   max-height: 100px;
   width: 300px;
@@ -48,6 +49,7 @@ img {
   background-color: #4285f4;
   border: 3px solid #4285f4;
   border-radius: 15px;
+  transition: all 0.4s;
 }
 
 img {
@@ -56,4 +58,18 @@ img {
 
 .hidden {
   display: none !important;
+}
+
+.box:hover {
+  transform: scale(1.05);
+  transition: all 0.4s;
+}
+
+.active {
+  border: 3px solid #46f898;
+}
+
+.active .image-container {
+  background-color: #46f898;
+  border: 3px solid #46f898;
 }

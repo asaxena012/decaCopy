@@ -14,8 +14,9 @@ function connectScript() {
     port.postMessage({ function: "html" });
     port.onMessage.addListener((response) => {
       console.log(response.data);
-
-      storeData(response.data);
+      if (response.data) {
+        storeData(response.data);
+      }
     });
   });
 }
@@ -36,19 +37,33 @@ function storeData(text) {
 
   //Set dataArray to Local Storage
   localStorage.setItem("dataArray", JSON.stringify(dataArray));
+  displayData();
 }
 
 // Traverse dataArray and display boxes
-dataArray.forEach(function (text) {
-  let elBox = document.querySelector(".hidden");
-  let elBoxContent = elBox.firstChild();
-});
+function displayData() {
+  let allBoxes = document.querySelectorAll(".box");
+  let idx = 0;
 
-//Select box-content element
-let elContainer = document.querySelector(".container-main");
-let elBoxContent = document.querySelectorAll(".box-content");
+  dataArray.forEach(function (text) {
+    let elBox = allBoxes[idx];
+    elBox.classList.toggle("hidden");
+    idx++;
+    let elContent = elBox.firstElementChild;
+    elContent.textContent = text;
+  });
 
-console.log(elBoxContent);
+  //trim content callback
+  trimContent();
+}
+
+displayData();
+
+function trimContent() {
+  //Select box-content element
+  let elBoxContent = document.querySelectorAll(".box-content");
+  elBoxContent.forEach(trimString);
+}
 
 //Callback Function that stores replaces extra content with a "..."
 function trimString(currentBox) {
@@ -58,21 +73,30 @@ function trimString(currentBox) {
   }
 }
 
-elBoxContent.forEach(trimString);
+function drag_handler(ev) {
+  console.log(ev.classList);
+  console.log(ev.target);
+  console.log(ev.target.value);
+}
 
-//let boxHTML = ` <div class="box">
-// <div class="box-content" contenteditable="true">
-//   Lorem Ipsum is simply dummy text of the printing and typesetting
-//   industry. Lorem Ipsum has been the industry's standard dummy text ever
-//   since the 1500s, when an unknown printer took a galley of type and
-//   scrambled it to
-// </div>
-// <div class="image-container">
-//   <img src="copyImage.png" alt="copy icon image" />
-// </div>
-// </div>`;
+//Copy paste functionality - Clipboard API
 
-// function displayData(text) {
-//   elContainer.innerHTML += boxHTML;
-//   document.querySelector(".box-content").textContent = text;
-// }
+let elAllBoxes = document.querySelectorAll(".box");
+
+elAllBoxes.forEach((box) => {
+  box.addEventListener("click", () => {
+    const idx = Number(box.getAttribute("id"));
+
+    navigator.clipboard.writeText(dataArray[idx]);
+
+    removeActive();
+    box.classList.toggle("active");
+    console.log(`Content of ${idx} box copied to clipboard`);
+  });
+});
+
+function removeActive() {
+  elAllBoxes.forEach((box) => {
+    box.classList.remove("active");
+  });
+}
