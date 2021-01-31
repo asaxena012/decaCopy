@@ -1,71 +1,14 @@
 "use strict";
 
-// Inject content script
-window.addEventListener("load", (event) => {
-  chrome.tabs.executeScript(null, { file: "content.js" }, () => {
-    connectScript();
-  });
-});
-
-// Establish the connection
-function connectScript() {
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const port = chrome.tabs.connect(tabs[0].id);
-    port.postMessage({ function: "html" });
-    port.onMessage.addListener((response) => {
-      console.log(response.data);
-      if (response.data) {
-        storeData(response.data);
-        removeActive();
-      }
-    });
-  });
-}
-
-//Keep an array of data
 let dataArray = [];
 
-if (localStorage.getItem("dataArray")) {
-  dataArray = JSON.parse(localStorage.getItem("dataArray"));
-}
-
-/* ---------------------------------------------------------------------- */
-
-//Get latest clipboard text - Failed attempt to read text from Async Clipboard API
-
-// navigator.permissions.query({ name: "clipboard-read" }).then((result) => {
-//   if (result.state == "granted" || result.state == "prompt") {
-//     navigator.clipboard.readText().then((text) => {
-//       console.log(text);
-//     });
-//   }
-// });
-
-// navigator.clipboard
-//   .readText()
-//   .then((text) => {
-//     console.log(text);
-//     if (dataArray[0] != text) {
-//       storeData(text);
-//     }
-//   })
-//   .catch((err) => {
-//     console.log("Something went wrong", err);
-//   });
-
-/* ----------------------------------------------------------------------- */
-
-// Manage data in array
-function storeData(text) {
-  dataArray.unshift(text);
-  if (dataArray.length > 10) {
-    dataArray.pop();
+chrome.storage.local.get("key", function (result) {
+  if (result) {
+    dataArray = result.key;
+    console.log(dataArray);
+    displayData();
   }
-
-  //Set dataArray to Local Storage
-  localStorage.setItem("dataArray", JSON.stringify(dataArray));
-  displayData();
-}
+});
 
 // Traverse dataArray and display boxes
 function displayData() {
@@ -79,7 +22,6 @@ function displayData() {
     let elContent = elBox.firstElementChild;
     elContent.textContent = text;
   });
-
   //trim content callback
   trimContent();
 }
@@ -95,7 +37,7 @@ function trimContent() {
 //Callback Function that stores replaces extra content with a "..."
 function trimString(currentBox) {
   let s = currentBox.textContent;
-  if (s.length > 160) {
+  if (s.length > 150) {
     currentBox.textContent = s.slice(0, 160) + "...";
   }
 }
@@ -122,6 +64,6 @@ function removeActive() {
   });
 }
 
-chrome.storage.local.get("key", function (result) {
-  console.log(result.key);
-});
+// chrome.storage.local.get("key", function (result) {
+//   console.log(result.key);
+// });
