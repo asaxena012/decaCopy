@@ -24,7 +24,9 @@ document.addEventListener("copy", copyWork);
 function copyWork(ev) {
   let copiedText = document.getSelection().toString();
   // console.log(copiedText);
-  storeData(copiedText);
+  if (copiedText) {
+    storeData(copiedText);
+  }
 }
 
 function storeData(text) {
