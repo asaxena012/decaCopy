@@ -28,8 +28,9 @@ body {
   max-height: 100px;
   width: 300px;
   border: 3px solid #4285f4;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-bottom: 25px;
+  cursor: pointer;
 }
 
 img {
@@ -47,13 +48,15 @@ img {
   flex-direction: column;
   justify-content: space-around;
   background-color: #4285f4;
-  border: 3px solid #4285f4;
+  /* border: 3px solid #4285f4; */
   border-radius: 15px;
   transition: all 0.4s;
+  margin: 1px;
+  margin-right: 1.5px;
 }
 
 img {
-  margin: 0px 11px;
+  margin: 0px 16px;
 }
 
 .hidden {

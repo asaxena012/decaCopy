@@ -16,3 +16,6 @@ function copyWork(ev) {
   let copiedText = document.getSelection().toString();
   portMsg.postMessage({ data: copiedText });
 }
+
+// Try using chrome storage
+chrome.storage.local.set({ key: "Aditya is Fucking Awesome" });

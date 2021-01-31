@@ -16,6 +16,7 @@ function connectScript() {
       console.log(response.data);
       if (response.data) {
         storeData(response.data);
+        removeActive();
       }
     });
   });
@@ -27,6 +28,32 @@ let dataArray = [];
 if (localStorage.getItem("dataArray")) {
   dataArray = JSON.parse(localStorage.getItem("dataArray"));
 }
+
+/* ---------------------------------------------------------------------- */
+
+//Get latest clipboard text - Failed attempt to read text from Async Clipboard API
+
+// navigator.permissions.query({ name: "clipboard-read" }).then((result) => {
+//   if (result.state == "granted" || result.state == "prompt") {
+//     navigator.clipboard.readText().then((text) => {
+//       console.log(text);
+//     });
+//   }
+// });
+
+// navigator.clipboard
+//   .readText()
+//   .then((text) => {
+//     console.log(text);
+//     if (dataArray[0] != text) {
+//       storeData(text);
+//     }
+//   })
+//   .catch((err) => {
+//     console.log("Something went wrong", err);
+//   });
+
+/* ----------------------------------------------------------------------- */
 
 // Manage data in array
 function storeData(text) {
@@ -73,12 +100,6 @@ function trimString(currentBox) {
   }
 }
 
-function drag_handler(ev) {
-  console.log(ev.classList);
-  console.log(ev.target);
-  console.log(ev.target.value);
-}
-
 //Copy paste functionality - Clipboard API
 
 let elAllBoxes = document.querySelectorAll(".box");
@@ -100,3 +121,7 @@ function removeActive() {
     box.classList.remove("active");
   });
 }
+
+chrome.storage.local.get("key", function (result) {
+  console.log(result.key);
+});
