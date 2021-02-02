@@ -1,21 +1,10 @@
 "use strict";
 
-// //Getting the connection port
-// let portMsg;
-// chrome.runtime.onConnect.addListener((port) => {
-//   port.onMessage.addListener((msg) => {
-//     if (msg.function == "html") {
-//       portMsg = port;
-//     }
-//   });
-// });
-
 var dataArray = [];
-
+console.log(dataArray);
 chrome.storage.local.get("key", function (result) {
-  if (result) {
+  if (result.key ?? false) {
     dataArray = result.key;
-    console.log(dataArray);
   }
 });
 
