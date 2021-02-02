@@ -3,10 +3,12 @@
 let dataArray = [];
 
 chrome.storage.local.get("key", function (result) {
-  if (result) {
+  if (result.key ?? false) {
     dataArray = result.key;
     console.log(dataArray);
     displayData();
+  } else {
+    document.querySelector(".home-image").classList.toggle("hidden");
   }
 });
 

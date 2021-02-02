@@ -76,3 +76,11 @@ img {
   background-color: #46f898;
   border: 3px solid #46f898;
 }
+
+/* Home Image CSS */
+.home-image {
+  width: 380px;
+  height: auto;
+  position: sticky;
+  top: 60px;
+}
