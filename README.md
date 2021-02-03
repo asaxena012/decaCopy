@@ -15,6 +15,7 @@ Download the zip file of the code, then follow the following instructions:
 ![alt text](docs/screenshot1.jpg)
 ![alt text](docs/screenshot2.jpg)
 ![alt text](docs/screenshot3.jpg)
+![alt text](docs/homePage.jpg)
 
 ---
 
