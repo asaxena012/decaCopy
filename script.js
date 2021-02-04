@@ -66,6 +66,23 @@ function removeActive() {
   });
 }
 
-// chrome.storage.local.get("key", function (result) {
-//   console.log(result.key);
-// });
+//Drag and Drop Handlers
+function dragstart_handler(ev) {
+  this.style.opacity = "0.4";
+
+  const idx = Number(this.getAttribute("id"));
+  const text = dataArray[idx];
+  ev.dataTransfer.setData("text/plain", text);
+}
+
+function dragend_handler(ev) {
+  this.style.opacity = "1";
+}
+
+// Add listeners (Inline JS not allowed)
+elAllBoxes.forEach((currentBox) => {
+  currentBox.addEventListener("dragstart", dragstart_handler, false);
+  currentBox.addEventListener("dragend", dragend_handler, false);
+});
+
+//
