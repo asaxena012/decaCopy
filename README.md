@@ -1,6 +1,6 @@
 # DecaCopy
 
-DecaCopy is a popup chrome extension that keeps track of your 10 recently copied text items in the browser in editable boxes. Doesn't lose the data on closing the tab/browser.
+DecaCopy is a popup chrome extension that keeps track of your 10 recently copied text items in the browser in editable and draggable boxes. Doesn't lose the data on closing the tab/browser.
 
 ## Key Features
 
@@ -17,7 +17,7 @@ Download the zip file of the code, then follow the following instructions:
 > To load your extension in Chrome, open up chrome://extensions/ in your browser and click “Developer mode” in the top right. Now click “Load unpacked extension…” and select the extension’s directory. You should now see your extension in the list.
 
 ---
-### Watch the working demo [here](https://www.youtube.com/watch?v=2ABCHB2TIlg) | Images 
+### Watch the working demo [here](https://www.linkedin.com/feed/update/urn:li:activity:6763333405858910208/) | Images 
 
 ![alt text](docs/screenshot1.jpg)
 ![alt text](docs/screenshot2.jpg)
@@ -30,6 +30,7 @@ Download the zip file of the code, then follow the following instructions:
 ## Technologies and APIs 
 - Chrome Storage API
 - Clipboard API
+- HTML Drag and Drop API
 - Vanilla JavaScript
 - CSS3
 - HTML5
